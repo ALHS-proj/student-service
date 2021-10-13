@@ -7,7 +7,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class StudentServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(StudentServiceApplication.class, args);
-	}
 
+		int retries = 5;
+		while (retries > 0) {
+			try {
+				SpringApplication.run(StudentServiceApplication.class, args);
+				break;
+			} catch (Exception e) {
+				System.out.println("attempt failed. retrying...");
+				retries--;
+			}
+		}
+	}
 }
